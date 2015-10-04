@@ -1,0 +1,15 @@
+{
+  "name": "materialize-angular-poc",
+  "version": "0.1.0",
+  "dependencies": {
+    "body-parser": "^1.13.3",
+    "bourne": "^0.4.0",
+    "crypto": "0.0.3",
+    "excel": "^0.1.4",
+    "express": "^4.13.3",
+    "express-session": "^1.11.3",
+    "formidable": "^1.0.17",
+    "fs-extra": "^0.24.0",
+    "xls-to-json": "^0.3.2"
+  }
+}

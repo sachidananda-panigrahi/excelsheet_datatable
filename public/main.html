@@ -1,0 +1,35 @@
+<!doctype html>
+<html ng-app='excelData'>
+<head data-template-set='html5-reset' id='www-sitename-com'>
+    <meta charset='utf-8'>
+    <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+    <meta content='deny' http-equiv='X-Frame-Options'>
+    <title>Excel Data to HTML Table</title>
+    <!--[if IE]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <base href='/'>
+    <link rel="stylesheet" href="assets/lib/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="assets/lib/bower_components/datatables/media/css/dataTables.bootstrap.min.css"/>
+    <link rel="stylesheet" href="assets/css/custom.css">
+
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container">
+        <a class="navbar-brand" href="/">Excel to HTML Dynamic</a>
+    </div>
+</nav>
+<div class="container">
+<div ng-view></div>
+</div>
+
+<script src="assets/lib/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="assets/lib/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+<script src="assets/lib/bower_components/angular/angular.min.js"></script>
+<script src="assets/lib/bower_components/angular-route/angular-route.min.js"></script>
+<script src="assets/lib/bower_components/angular-resource/angular-resource.min.js"></script>
+<script src="assets/lib/bower_components/angular-file-upload/dist/angular-file-upload.min.js"></script>
+<script src="app/controller/controllers.js"></script>
+</body>
+</html>
