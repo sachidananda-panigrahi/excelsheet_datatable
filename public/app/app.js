@@ -1,4 +1,4 @@
-var excelData = angular.module('excelData', ['ngRoute', 'ngResource', 'angularFileUpload']);
+var excelData = angular.module('excelData', ['ngRoute', 'ngResource', 'angularFileUpload', 'datatables']);
 
     excelData.config(function ($routeProvider, $locationProvider) {
         $routeProvider

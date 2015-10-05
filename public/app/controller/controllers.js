@@ -17,6 +17,11 @@ excelData.controller('uploadController', ['$scope','$location','FileUploader', '
     };
 
 
-}]).controller('dataTableController', ['$scope', function($scope){
+}]).controller('dataTableController', ['$scope', 'DTOptionsBuilder', 'DTColumnBuilder', '$resource', function($scope, DTOptionsBuilder, DTColumnBuilder, $resource){
+    var vm = this;
+    vm.dtOptions = DTOptionsBuilder.fromFnPromise(function() {
+        return $resource('/api/tabledata').query().$promise;
+    }).withPaginationType('full_numbers');
+
 
 }]);
