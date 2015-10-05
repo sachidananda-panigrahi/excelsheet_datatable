@@ -1,1 +1,4 @@
+.idea/
+node_modules/*
+public/assets/lib/bower_components/*
 data/*

@@ -1,7 +1,8 @@
-
-var express    = require('express'),
-    api        = require('./api/api'),
-    app        = express();
+var express = require('express'),
+    api = require('./api/api'),
+    app = express(),
+    mongoose = require('mongoose'),
+    connection = mongoose.connect('mongodb://localhost/excel_sheet_db'); // MongoDB
 
 app.use(express.static('./public'))
     .use('/api', api)

@@ -5,7 +5,8 @@ var express = require('express'),
     http = require('http'),
     util = require('util'),
     node_xj = require("xls-to-json"),
-    fs = require('fs-extra');
+    fs = require('fs-extra'),
+    tableController = require('../controller/tablesController').tableController;
 
 router
     .use(bodyParser.json())
@@ -41,6 +42,7 @@ router
                         if (err) {
                             console.error(err);
                         } else {
+
                             res.send(result);
                             //console.log(result);
                         }
