@@ -1,5 +1,5 @@
 //CONTROLLER
-excelData.controller('uploadController', ['$scope','$location','FileUploader', 'fileUpload', function($scope, $location, FileUploader, fileUpload){
+app.controller('uploadController', ['$scope','$location','FileUploader', 'fileUpload', '$saveData', function($scope, $location, FileUploader, fileUpload, $saveData){
     var uploader = $scope.uploader = new FileUploader({
         url: '/api/upload'
     });
@@ -12,16 +12,22 @@ excelData.controller('uploadController', ['$scope','$location','FileUploader', '
         }
     });
 
+    uploader.onCompleteItem = function(fileItem, response, status, headers) {
+        console.info('onCompleteItem', fileItem, response, status, headers);
+        $saveData.setSelected(response);
+    };
     uploader.onCompleteAll = function() {
-       $location.path("/datatable");
+        $location.path("/datatable");
     };
 
 
-}]).controller('dataTableController', ['$scope', 'DTOptionsBuilder', 'DTColumnBuilder', '$resource', function($scope, DTOptionsBuilder, DTColumnBuilder, $resource){
-    var vm = this;
-    vm.dtOptions = DTOptionsBuilder.fromFnPromise(function() {
-        return $resource('/api/tabledata').query().$promise;
-    }).withPaginationType('full_numbers');
+}]).controller('dataTableController', ['$getData', '$scope', function ($getData, $scope) {
+
+    $getData.getResponse().then(function(result){
+        $scope.data = result;
+        $scope.header = $scope.data[0].tableData[0].slice(0,1);
+    });
+    console.log($scope.data);
 
 
 }]);

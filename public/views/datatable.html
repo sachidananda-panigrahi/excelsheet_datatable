@@ -1,3 +1,12 @@
-<div ng-controller="dataTableController as showCase">
-    <table datatable="" dt-options="showCase.dtOptions" dt-columns="showCase.dtColumns" class="row-border hover"></table>
-</div>
+<table class="table">
+    <thead ng-repeat="table in header">
+        <tr >
+            <th ng-repeat="(key, value) in table">{{key}}</th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="cell in data[0].tableData[0]">
+        <td ng-repeat="(key, value) in cell">{{value}}</td>
+    </tr>
+    </tbody>
+</table>
