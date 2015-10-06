@@ -1,5 +1,5 @@
 //CONTROLLER
-app.controller('uploadController', ['$scope','$location','FileUploader', 'fileUpload', '$saveData', function($scope, $location, FileUploader, fileUpload, $saveData){
+app.controller('uploadController', ['$scope','$location','FileUploader', 'fileUpload', function($scope, $location, FileUploader, fileUpload){
     var uploader = $scope.uploader = new FileUploader({
         url: '/api/upload'
     });
@@ -14,8 +14,8 @@ app.controller('uploadController', ['$scope','$location','FileUploader', 'fileUp
 
     uploader.onCompleteItem = function(fileItem, response, status, headers) {
         console.info('onCompleteItem', fileItem, response, status, headers);
-        $saveData.setSelected(response);
     };
+
     uploader.onCompleteAll = function() {
         $location.path("/datatable");
     };

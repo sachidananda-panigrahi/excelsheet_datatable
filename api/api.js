@@ -30,27 +30,30 @@ router.route('/upload')
                     console.error(err);
                 } else {
                     console.log(file_origial);
-                    node_xj({
-                        input: file_origial,
-                        output: null
-                    }, function (err, result) {
-                        if (err) {
-                            console.error(err);
-                        } else {
+                    fs.readFile(file_origial, function(err, data) {
+                        node_xj({
+                            input: file_origial,
+                            output: null
+                        }, function (err, result) {
+                            if (err) {
+                                console.error(err);
+                            } else {
 
-                            var data = {
-                                tableName: file_name.split(".")[0],
-                                tableData: new Array(result),
-                                createdAt: new Date()
+                                var data = {
+                                    tableName: file_name.split(".")[0],
+                                    tableData: new Array(result),
+                                    createdAt: new Date()
 
-                            };
+                                };
 
-                            tableController.addTable(data).done(function (mData) {
-                                res.send(mData);
-                            });
-                            //console.log(result);
-                        }
+                                tableController.addTable(data).done(function (mData) {
+                                    res.send(mData);
+                                });
+                                //console.log(result);
+                            }
+                        });
                     });
+
                 }
             });
 
