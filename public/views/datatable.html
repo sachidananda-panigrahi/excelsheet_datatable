@@ -1,1 +1,12 @@
-HTML table
+<table class="table">
+    <thead ng-repeat="table in header">
+        <tr >
+            <th ng-repeat="(key, value) in table">{{key}}</th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="cell in data[0].tableData[0]">
+        <td ng-repeat="(key, value) in cell">{{value}}</td>
+    </tr>
+    </tbody>
+</table>

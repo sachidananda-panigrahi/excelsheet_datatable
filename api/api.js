@@ -1,18 +1,14 @@
 var express = require('express'),
-    bodyParser = require('body-parser'),
     router = express.Router(),
     formidable = require('formidable'),
     http = require('http'),
     util = require('util'),
     node_xj = require("xls-to-json"),
-    fs = require('fs-extra');
+    fs = require('fs-extra'),
+    tableController = require('../controller/tablesController').tableController;
 
-router
-    .use(bodyParser.json())
-    .route('/upload')
+router.route('/upload')
     .post(function (req, res) {
-        var form = new formidable.IncomingForm();
-
         var form = new formidable.IncomingForm();
         var fieldsObj = {};
         form.parse(req, function (err, fields, files) {
@@ -34,23 +30,39 @@ router
                     console.error(err);
                 } else {
                     console.log(file_origial);
-                    node_xj({
-                        input: file_origial,
-                        output: null
-                    }, function (err, result) {
-                        if (err) {
-                            console.error(err);
-                        } else {
-                            res.send(result);
-                            //console.log(result);
-                        }
+                    fs.readFile(file_origial, function(err, data) {
+                        node_xj({
+                            input: file_origial,
+                            output: null
+                        }, function (err, result) {
+                            if (err) {
+                                console.error(err);
+                            } else {
+
+                                var data = {
+                                    tableName: file_name.split(".")[0],
+                                    tableData: new Array(result),
+                                    createdAt: new Date()
+
+                                };
+
+                                tableController.addTable(data).done(function (mData) {
+                                    res.send(mData);
+                                });
+                                //console.log(result);
+                            }
+                        });
                     });
+
                 }
             });
 
         });
 
-
     });
-
+router.route('/tabledata').get(function(req, res){
+    tableController.getAllTables().done(function (mData) {
+        res.send(mData);
+    });
+});
 module.exports = router;

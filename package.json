@@ -10,6 +10,8 @@
     "express-session": "^1.11.3",
     "formidable": "^1.0.17",
     "fs-extra": "^0.24.0",
+    "mongoose": "^4.1.9",
+    "promise": "^7.0.4",
     "xls-to-json": "^0.3.2"
   }
 }
