@@ -22,7 +22,10 @@ app.controller('uploadController', ['$scope','$location','FileUploader', 'fileUp
 
 
 }]).controller('dataTableController', ['$getData', '$scope', function ($getData, $scope) {
-
+    $scope.sort = function(keyname){
+        $scope.sortKey = keyname;   //set the sortKey to the param passed
+        $scope.reverse = !$scope.reverse; //if true make it false and vice versa
+    }
     $getData.getResponse().then(function(result){
         $scope.data = result;
         $scope.header = $scope.data[0].tableData[0].slice(0,1);
